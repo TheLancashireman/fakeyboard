@@ -5,6 +5,8 @@
 This project allows a computer to control another computer as though a real person is
 using the second computer via the keyboard. Mouse support might be added later.
 
+Uses the davroska operating system
+
 ## License, disclaimer etc.
 
 Copyright David Haworth
@@ -22,4 +24,4 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License
-along with davros.  If not, see <http://www.gnu.org/licenses/>.
+along with Fakeyboard.  If not, see <http://www.gnu.org/licenses/>.
