@@ -24,7 +24,7 @@
 #	Targets:
 #		clean: removes all object and binary files
 #		default: compiles and links
-#		install: objcopy the ELF file to a binary (img) file IMAGE_FILE
+#		image: objcopy the ELF file to a binary (img) file IMAGE
 
 # Find out where we are :-)
 PRJ_ROOT	?= $(shell pwd)
@@ -121,7 +121,7 @@ VPATH		+=	$(DV_ROOT)/devices/c
 VPATH		+=	$(DV_ROOT)/devices/s
 
 
-.PHONY:		default all help clean install srec
+.PHONY:		default all help clean image
 
 default:	elf
 
@@ -145,7 +145,7 @@ $(DV_BIN_D):
 $(DV_OBJ_D):
 	mkdir -p obj
 
-install:		$(DV_OBJ_D) $(DV_BIN_D) $(IMAGE_FILE)
+image:			$(DV_OBJ_D) $(DV_BIN_D) $(IMAGE)
 
 $(IMAGE):		$(DV_BIN_D)/fakeyboard.elf
 	$(DV_OBJCOPY) $(DV_BIN_D)/fakeyboard.elf -O binary $(IMAGE)
