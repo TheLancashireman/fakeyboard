@@ -1,5 +1,9 @@
 # Fakeyboard
 
+## Construction site!
+
+Nothing works yet.
+
 ## A fake USB keyboard
 
 This project allows a computer to control another computer as though a real person is
