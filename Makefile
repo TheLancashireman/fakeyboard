@@ -63,6 +63,7 @@ CC_OPT		+=	-D DV_DAVROSKA=1
 CC_OPT		+= -I h
 CC_OPT		+= -I $(DVSK_ROOT)/h
 CC_OPT		+= -I $(DVSK_ROOT)/hardware
+CC_OPT		+= -I $(DV_ROOT)/usb/h
 CC_OPT		+= -I $(DV_ROOT)/devices/h
 CC_OPT		+= -I $(DV_ROOT)/lib/h
 CC_OPT		+= -Wall
@@ -105,10 +106,13 @@ DV_LD_OBJS	+= $(DV_OBJ_D)/dv-cortexm-vectors.o
 DV_LD_OBJS	+= $(DV_OBJ_D)/dv-stm32-rcc.o
 DV_LD_OBJS	+= $(DV_OBJ_D)/dv-stm32-uart.o
 DV_LD_OBJS	+= $(DV_OBJ_D)/dv-stm32-timx.o
+DV_LD_OBJS	+= $(DV_OBJ_D)/dv-stm32-usb.o
 DV_LD_OBJS	+= $(DV_OBJ_D)/dv-nvic.o
 DV_LD_OBJS	+= $(DV_OBJ_D)/davroska-cortexm.o
 DV_LD_OBJS	+= $(DV_OBJ_D)/dv-switchcall.o
 DV_LD_OBJS	+= $(DV_OBJ_D)/dv-cortexm-ctxsw.o
+DV_LD_OBJS	+= $(DV_OBJ_D)/dv-usb.o
+DV_LD_OBJS	+= $(DV_OBJ_D)/dv-usb-ep0-setup.o
 
 VPATH		+=	$(DVSK_ROOT)/hardware/arm/c
 VPATH		+=	$(DVSK_ROOT)/hardware/arm/s
@@ -117,6 +121,7 @@ endif
 
 VPATH		+=	$(DVSK_ROOT)/hardware/common/c
 VPATH		+=	$(DV_ROOT)/lib/c
+VPATH		+=	$(DV_ROOT)/usb/c
 VPATH		+=	$(DV_ROOT)/devices/c
 VPATH		+=	$(DV_ROOT)/devices/s
 

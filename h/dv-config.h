@@ -29,6 +29,8 @@
 */
 #define DV_TARGET		<arm/h/dv-target-blue-pill.h>
 #define FAKEY_TARGET	<fakey-blue-pill.h>
+#define DV_USB_CONFIG	<fakey-usb-config.h>
+#define DV_USB_CALLOUT	<fakey-usb-callout.h>
 
 /* DV_CFG_MAXEXE is the maximum number of executables (tasks + ISRs) that you can create.
 */

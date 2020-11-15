@@ -36,7 +36,7 @@
 */
 /* Object identifiers
 */
-dv_id_t Init, Led;							/* Tasks */
+dv_id_t Init, Led, Usb;						/* Tasks */
 dv_id_t Uart, Timer;						/* ISRs */
 dv_id_t Ticker;								/* Counters */
 dv_id_t LedOn, LedOff;						/* Alarms */
@@ -47,6 +47,34 @@ const dv_eventmask_t ev_LedOff	= 0x02;	/* Turn LED off */
 /* main_Led() - task body function for the Led task
 */
 void main_Led(void)
+{
+	dv_statustype_t ee;
+	dv_eventmask_t events;
+
+	for (;;)
+	{
+		if ( (ee = dv_waitevent(ev_LedOn|ev_LedOff)) != dv_e_ok )
+			dv_shutdown(ee);
+		if ( (ee = dv_getevent(Led, &events)) != dv_e_ok )
+			dv_shutdown(ee);
+		if ( (ee = dv_clearevent(events)) != dv_e_ok )
+			dv_shutdown(ee);
+
+		if ( (events & ev_LedOff) != 0 )
+		{
+			hw_SetLed(0);
+		}
+
+		if ( (events & ev_LedOn) != 0 )
+		{
+			hw_SetLed(1);
+		}
+	}
+}
+
+/* main_Usb() - task body function for the Usb task
+*/
+void main_Usb(void)
 {
 	dv_statustype_t ee;
 	dv_eventmask_t events;
@@ -129,7 +157,8 @@ dv_u64_t af_LedOff(dv_id_t a, dv_param_t unused_d)
 void callout_addtasks(dv_id_t mode)
 {
 	Init = dv_addtask("Init", &main_Init, 4, 1);
-	Led = dv_addextendedtask("Led", &main_Led, 1, 2048);
+	Led = dv_addextendedtask("Led", &main_Led, 1, 1024);
+	Usb = dv_addextendedtask("Led", &main_Usb, 4, 1024);
 }
 
 /* callout_addisrs() - configure the isrs
